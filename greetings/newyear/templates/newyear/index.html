@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Is it New year</title>
+    </head>
+    <body style="text-align: center; font-size: 28px; font-family: Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
+        <p style="font-weight: bold; color: brown;">Is Today A new year?</p>
+        <div class="CheckIfnewYear" >
+            {% if newyear %}
+                <h1 style="color: green;">YES</h1>
+            {% else %}
+                <h1 style="color: red;">NO</h1>
+            {% endif %}
+        </div>
+       
+        <p style="text-align: center;">Today is <span style="color: red;">{{day}}</span> /<span style="color: red;">{{month}}</span>/ <span style="color: red;">{{year}}</span></p>
+    </body>
+</html>
