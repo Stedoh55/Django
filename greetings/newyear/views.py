@@ -8,7 +8,7 @@ def index(request):
     return render(request, "newyear/index.html",{
         "newyear": now.month == 1 and now.day ==1,
         "month": now.month,
-        "day": now.days,
+        "day": now.day,
         "year": now.year 
     })
 
