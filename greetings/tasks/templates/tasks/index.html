@@ -4,6 +4,8 @@
     <ul>
         {% for task in tasks %}
             <li>{{task}}</li>
+        {% empty %}
+            <li>No Tasks.</li>
         {% endfor %}
     </ul>
 
