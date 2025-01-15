@@ -1,0 +1,44 @@
+{% comment %}
+The Base for the consistent structure among all pages in the app
+
+{% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Lemon</title>
+    <style>
+        body{
+            background-color: #bea2c2;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        table{
+            border-collapse: collapse;
+            width: 50%;
+        }
+        th,td{
+            border: 1px solid #000;
+            text-align: left;
+            padding-left: 8px;
+        }
+        th{
+            background-color: orangered;
+        }
+        caption{
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body > 
+    {% include 'partials/_header.html' %}
+    <main>
+        {% block content%}
+        {% endblock %}
+    </main>
+    
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+ <h2>About</h2>
+    <div>
+        <p style="font-size: 20px;">Hello World! This is the Template I made from the Django Templates</p>
+    </div>
+    <p>Here are Our Talented Heroes</p>
+    <ul>
+       {% comment "Maelezo Kidogo" %}
+        HAPA ni Sehemu ya  Kujiachia na Documentations for other devs
+
+       {% endcomment%}
+
+       {% for person in hero %}
+        <li>{{person.name}} from {{person.class}}</li>
+       
+        {% endfor %}
+    </ul>
+   
+
+{% endblock %}
+
+

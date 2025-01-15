@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content%}
+     
+
+    <h1>Welcome to Our Menu</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At doloribus neque, aperiam, earum ratione sapiente repellat excepturi cumque accusantium, soluta quas quia dicta? Illo, nobis repellendus iste inventore beatae quos!</p>
+    <table>
+        <caption>Enjoy Our Meal</caption>
+        <thead>
+            <tr>
+                <th>Menu Item</th>
+                <th>Item Price</th>
+                <th>Meal Category</th>
+            </tr>
+        </thead>    
+    
+        {% if menu %}
+            {% for item in menu %}
+            <tbody>
+                <tr>
+                    <td>{{item.menu_item}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.category_id}}</td>
+                </tr>
+            </tbody>           
+
+            {% endfor %}
+            <tfoot>
+                <tr>
+                    <td colspan="2">TOTAL MENU ITEMS</td>
+                    <td>{{menuItems}} </td>    
+                </tr>
+            </tfoot>
+        {% else %}   
+            <td colspan="3">No item to Display</td>      
+        {% endif %}
+    </table>
+
+{% endblock %}
+
+
+
+   
