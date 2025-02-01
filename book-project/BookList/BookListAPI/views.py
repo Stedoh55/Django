@@ -17,7 +17,18 @@ def books(request):
 # Example of the Class Based from view 
 class BookList(APIView):
     def get(self, request):
-        return Response({"message":"list of books"}, status.HTTP_200_OK)
+        author = request.GET.get('author')
+        if(author):
+            return Response({"message":"List of books by " + author}, status.HTTP_200_OK)
+        return Response({"message": "List of books"}, status.HTTP_200_OK)
     
     def post(self, request):
         return Response({"message":"new book created"}, status.HTTP_201_CREATED)
+
+# Manipulating a single book item
+class Book(APIView):
+    def get(self, request, pk):
+        return Response({"message":"Single book with id " + str(pk)}, status.HTTP_200_OK)
+    
+    def put(self, request, pk):
+        return Response({"title":request.data.get('title')}, status.HTTP_200_OK)
