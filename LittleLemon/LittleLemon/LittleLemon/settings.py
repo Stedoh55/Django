@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from decouple import config
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',  #for Authorization
     'django_filters',   #For applying builtin filters,search and pagination
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
     'LittleLemonAPI',   
     # 'debug_toolbar',  #It is causing Troubles with redirects
 ]
@@ -75,18 +78,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'LittleLemon.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 
 # Configuring MySQL as The Default Database
 DATABASES = {
@@ -161,6 +152,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 5,
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_THROTTLE_RATES': {
@@ -169,5 +161,10 @@ REST_FRAMEWORK = {
         'ten':'10/min',
     },
         
+}
+
+#Time for the JWT Token to expire
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
 }
 
