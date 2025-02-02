@@ -26,7 +26,7 @@ SECRET_KEY = config('DJANGO_SECRET_KEY', default = 'fallback-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DJANGO_DEBUG', default = False, cast = bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost",'127.0.0.1']
 
 
 # Application definition
@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',  #for Authorization
+    'django_filters',   #For applying builtin filters,search and pagination
     'LittleLemonAPI',   
     # 'debug_toolbar',  #It is causing Troubles with redirects
 ]
@@ -149,6 +151,23 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',  #For Rendering json data
         'rest_framework.renderers.BrowsableAPIRenderer', # For Browsable API Renderer
         'rest_framework_xml.renderers.XMLRenderer' # for XML Renderer (3rd Party-library)
-    ]
+    ],
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.OrderingFilter',
+        'rest_framework.filters.SearchFilter',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5,
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon':'2/min',
+        'user':'5/min',
+        'ten':'10/min',
+    },
+        
 }
 
