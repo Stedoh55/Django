@@ -114,7 +114,7 @@ def throttle_check(request):
     #B:For Authenticated Users
 @api_view()
 @permission_classes([IsAuthenticated])
-@throttle_classes([TenCallsPerMinute])
+@throttle_classes([TenCallsPerMinute ])
 def throttle_check_auth(request):
     return Response({"message":"Successful Your Are in Authenticated Mode"})
 
