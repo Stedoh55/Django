@@ -1,4 +1,10 @@
 #1. making the use of Modules from DRF and Not from scratch(Class based View)
+from django.shortcuts import render
+from LittleLemonAPI.forms import CommentForm
+from .models import UserComment
+from django.http import JsonResponse
+from datetime import datetime
+
 from rest_framework import generics #Used in Approach Number 1
 from rest_framework import viewsets #Used in approach Number 3
 from .models import MenuItem
@@ -34,6 +40,10 @@ from .throttles import TenCallsPerMinute
 # class SingleMenuItemview(generics.RetrieveUpdateDestroyAPIView): # For Updating and Deleting an Item
 #     queryset = MenuItem.objects.all()
 #     serializer_class = MenuItemSerializer
+
+# Welcome Page
+def home(request):
+    return render(request, 'index.html')
 
 
 #2. Using the Search functionalities (Function Based Approach)
@@ -117,5 +127,26 @@ def throttle_check(request):
 @throttle_classes([TenCallsPerMinute ])
 def throttle_check_auth(request):
     return Response({"message":"Successful Your Are in Authenticated Mode"})
+
+
+# Views for The User comments
+def form_view(request):
+    form = CommentForm()
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            uc = UserComment(
+                first_name = cd['first_name'],
+                last_name = cd['last_name'],
+                comment = cd['comment'],
+            )
+            uc.save()
+            return JsonResponse({
+                'message': 'success'
+            })
+    return render(request, 'blog.html',{'form': form} )
+
 
     

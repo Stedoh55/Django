@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Lemon Blogs</title>
+
+     {% load static %}
+     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+</head>
+<body>
+    <div>
+        <h1>We Would like to hear from you, hence we are proud to have your feelings</h1>
+        <h2>User Comments</h2>
+        <form method="POST" id="form">
+            {% csrf_token %}
+           
+            {{ form.as_p }}
+
+            <button type="submit" class="button">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('form');
+        form.addEventListener("submit", submitHandler);
+
+        function submitHandler(e){
+            e.preventDefault();
+
+            fetch(form.action, {method: 'POST', body: new FormData(form)})
+            .then(response=>response.json())
+            .then(data=>{
+                if(data.message === 'success'){
+                    
+                    form.reset()
+                    alert('Success!');
+                }
+            })
+            
+                
+                
+           
+
+        }
+
+
+    </script>
+
+
+
+</body>
+</html>

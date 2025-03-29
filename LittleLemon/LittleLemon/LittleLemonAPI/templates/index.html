@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Little Lemon</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <h1>Welcome to our Restaurant</h1>
     <header>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="blog.html">Blogs</a></li>
-                <li><a href="menu.html">Menu</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/blog">Blogs</a></li>
+                <li><a href="/menu">Menu</a></li>
             </ul>
         </nav>
     </header>
@@ -39,7 +41,7 @@
 
         </article>
     </main>
-    <footer>
+    <footer style="justify-items: center;">
         <p>Copyright Steven Simoni 2025</p>
     </footer>
     
