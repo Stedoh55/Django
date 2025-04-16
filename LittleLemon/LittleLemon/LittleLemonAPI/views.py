@@ -149,4 +149,35 @@ def form_view(request):
     return render(request, 'blog.html',{'form': form} )
 
 
-    
+
+def sample_api(request):
+    items = [
+        {
+            "name": 'item 1',
+            "price": 10
+        },
+         {
+            "name": 'item 2',
+            "price": 40
+        },
+         {
+            "name": 'item 3',
+            "price": 20
+        },
+         {
+            "name": 'item 4',
+            "price": 90
+        },
+         {
+            "name": 'item 5',
+            "price": 200
+        },
+         {
+            "name": 'item 6',
+            "price": 110
+        }
+    ]
+    return JsonResponse(items, safe=False)
+   
+
+        

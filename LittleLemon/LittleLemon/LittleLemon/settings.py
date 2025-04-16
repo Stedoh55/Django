@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'django_filters',   #For applying builtin filters,search and pagination
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
-    'LittleLemonAPI',   
+    'LittleLemonAPI',
+    'corsheaders' #for allowing http calls across other origins   
     # 'debug_toolbar',  #It is causing Troubles with redirects
 ]
 
@@ -56,10 +57,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
     # 'debug_toolbar.middleware.DebugToolbarMiddleware',     # Removed for a While
 ]
 
 ROOT_URLCONF = 'LittleLemon.urls'
+
+# Allowing CORS origin for Development only
+CORS_ALLOW_ALL_ORIGINS = True
 
 TEMPLATES = [
     {
@@ -141,8 +146,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',  #For Rendering json data
-        'rest_framework.renderers.BrowsableAPIRenderer', # For Browsable API Renderer
-        'rest_framework_xml.renderers.XMLRenderer' # for XML Renderer (3rd Party-library)
+        # 'rest_framework.renderers.BrowsableAPIRenderer', # For Browsable API Renderer
+        # 'rest_framework_xml.renderers.XMLRenderer' # for XML Renderer (3rd Party-library)
     ],
     'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend',
@@ -150,7 +155,7 @@ REST_FRAMEWORK = {
         'rest_framework.filters.SearchFilter',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 5,
+    'PAGE_SIZE': 10,
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',

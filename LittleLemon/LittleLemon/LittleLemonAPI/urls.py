@@ -13,5 +13,6 @@ urlpatterns = [
     path('manager-view', views.manager_view),    #Only Authenticated Users under manager group can visit this endpoint
     path('throttle-check', views.throttle_check),
     path('throttle-check-auth', views.throttle_check_auth), 
-    path('blog', views.form_view),    
+    path('blog', views.form_view),
+    path('api/sample', views.sample_api),
 ]
