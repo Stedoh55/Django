@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | Home</title>
-</head>
-<body>
-    <header>
-        <h1><a href="{% url 'home' %}">Django blog</a></h1>
-    </header>
+{% extends 'blog/base.html' %}
+
+{% block title %} Blog | Home {% endblock %}
+
+{% block content %}
     <div>
         {% for post in post_list %}
         <div class="post-entry">
@@ -20,7 +11,6 @@
         </div>
         {% endfor %}
     </div>
-</body>
-</html>
+{% endblock %}
 
 
