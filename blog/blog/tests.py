@@ -50,3 +50,34 @@ class BlogTests(TestCase):
         self.assertEqual(no_response.status_code, 404)                     #Checking if the blog details return not found error when pk is invalid
         self.assertContains(response, "A good title")                      #Checking if contents of the blog details url is the model items
         self.assertTemplateUsed(response, "blog/post_detail.html")         #checking if the used template is correct       
+
+    #9 checking for the create view functionality
+    def test_post_createview(self): # new
+        response = self.client.post(reverse("post_new"),
+            {
+            "title": "New title",
+            "body": "New text",
+            "author": self.user.id,
+            },
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(Post.objects.last().title, "New title")
+        self.assertEqual(Post.objects.last().body, "New text")
+
+    # 10 Checking for the form update functionality
+    def test_post_updateview(self): # new
+        response = self.client.post(reverse("post_edit", args="1"),
+            {
+            "title": "Updated title",
+            "body": "Updated text",
+            },
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(Post.objects.last().title, "Updated title")
+        self.assertEqual(Post.objects.last().body, "Updated text")
+
+    # 11 Checking for the delete view functionality
+    def test_post_deleteview(self): # new
+        response = self.client.post(reverse("post_delete", args="1"))
+        self.assertEqual(response.status_code, 302)
