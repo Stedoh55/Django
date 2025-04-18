@@ -1,0 +1,9 @@
+# Virtual environment
+.venv
+
+#database
+*.sqlite3
+
+#migrations
+migrations/
+*__pycache__
