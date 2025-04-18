@@ -36,8 +36,10 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "django.contrib.staticfiles",
-    "blog.apps.BlogConfig", # new
+    "whitenoise.runserver_nostatic",    # new app for collecting static, placd above collect static app
+    "django.contrib.staticfiles",       #Overriding it with whitenoise
+    "blog.apps.BlogConfig",
+    "accounts.apps.AccountsConfig",
 ]
 
 MIDDLEWARE = [
@@ -48,6 +50,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware", # new middleware for collecting static files
 ]
 
 ROOT_URLCONF = "django_project.urls"
@@ -115,8 +118,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "static"] # new
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles" # new
+# STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"          # django Builtin Default
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"          # neUsing White Noise
+
+
+# The url after a successful login/logout
+LOGIN_REDIRECT_URL = "home" 
+LOGOUT_REDIRECT_URL = "home"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
