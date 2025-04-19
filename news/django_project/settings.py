@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     # Local Apps
     "accounts.apps.AccountsConfig",
     "pages.apps.PagesConfig",
+    "articles.apps.ArticlesConfig",
 
     # Thirdy Part Apps
     "crispy_forms",
@@ -43,11 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    
-
-    
-    
+    'django.contrib.staticfiles',   
 ]
 
 MIDDLEWARE = [
@@ -119,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Dar_es_Salaam'
 
 USE_I18N = True
 
