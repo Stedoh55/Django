@@ -4,17 +4,33 @@
 
 {% block content %}
     {% for article in article_list %}
-        <div class="card">
-            <div class="card-header">
+        <div class="card shadow-lg border-warning border-opacity-50">
+            <div class="card-header bg-warning">
                 <span class="font-weight-bold">
                     <a class="font-weight-bold text-decoration-none" href="{% url 'article_detail' article.pk %}">{{ article.title }}</a>
                 </span> &middot;
-                <span class="text-muted">by {{ article.author }} |{{ article.date }}</span>
+                <span class="text-muted">by {{ article.author }} | {{ article.date }}</span>
             </div>
-            <div class="card-body">
-                {{ article.body }}
+            <div class="card-body  p-0 ">
+              
+                <div class="article-body my-0 py-2 px-4 bg-primary bg-opacity-50">  {{ article.body }}</div>
+                    <div class="comments bg-dark bg-opacity-25 px-4">
+                        <h6>comments</h6>
+                        {% for comment in article.comment_set.all %}
+                        <p class="my-0">
+                            <span class="comment-date">{{comment.date}}</span>
+                            <span class="comment-author font-weight-bold">
+                            {{ comment.author }} &middot;
+                            </span>
+                            {{ comment }}
+                        </p>
+                        {% endfor %}
+                    </div>
+                
+                
+                
             </div>
-            <div class="card-footer text-center text-muted">
+            <div class="card-footer text-center text-muted bg-warning bg-opacity-50">
                 <a href="{% url 'article_edit' article.pk %}">Edit</a> |
                 <a href="{% url 'article_delete' article.pk %}">Delete</a>
             </div>

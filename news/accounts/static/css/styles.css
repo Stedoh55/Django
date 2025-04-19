@@ -1,0 +1,19 @@
+.comments{
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 0;
+}
+
+.comment-date{
+    font-size: 12px;
+}
+
+.comment-author{
+    font-size: 14px;
+    color: red;
+}
+
+.article-body{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

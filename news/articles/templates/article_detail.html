@@ -1,11 +1,45 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
+
 {% block content %}
-<div class="article-entry">
-<h2>{{ object.title }}</h2>
-<p>by {{ object.author }} | {{ object.date }}</p>
-<p>{{ object.body }}</p>
+<div class="card shadow-lg border-warning border-opacity-50">
+     <div class="article-entry card-header bg-warning">
+        <h2>{{ object.title }}</h2>
+        <p>by {{ object.author }} | {{ object.date }}</p>
+       
+    </div>
+    <div class="card-body p-0">
+        <div class="article-body my-0 py-2 px-4 bg-primary bg-opacity-50">
+             <p>{{ object.body }}</p>
+        </div>
+         <div class="comments bg-dark bg-opacity-25 px-4">
+                        <h6>comments</h6>
+                        {% for comment in article.comment_set.all %}
+                        <p class="my-0">
+                            <span class="comment-date">{{comment.date}}</span>
+                            <span class="comment-author font-weight-bold">
+                            {{ comment.author }} &middot;
+                            </span>
+                            {{ comment }}
+                        </p>
+                        {% endfor %}
+                    </div>
+                    <h4>Add a comment</h4>
+<form action="" method="post">{% csrf_token %}
+{{ form|crispy }}
+<button class="btn btn-success ml-2" type="submit">Save</button>
+</form>
+
+    </div>
+    <div class="card-footer text-center text-muted bg-warning bg-opacity-50">
+        <div>
+            <p><a href="{% url 'article_edit' article.pk %}">Edit</a> |
+            <a href="{% url 'article_delete' article.pk %}">Delete</a></p>
+        </div>
+        
+        <p>Back to <a href="{% url 'article_list' %}">All Articles</a>.</p>
+    </div>
+    
 </div>
-<p><a href="{% url 'article_edit' article.pk %}">Edit</a> |
-<a href="{% url 'article_delete' article.pk %}">Delete</a></p>
-<p>Back to <a href="{% url 'article_list' %}">All Articles</a>.</p>
+   
 {% endblock content %}
