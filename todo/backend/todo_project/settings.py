@@ -137,7 +137,7 @@ REST_FRAMEWORK = {
 
 # Setting Domains where API can be consumed
 CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',    # React Developent Environment
+    'http://localhost:5173',    # React + Vite Developent Environment
     'http://localhost:8000',    # Django Development Environment
 )
 
