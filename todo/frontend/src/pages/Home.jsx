@@ -27,6 +27,7 @@ function Home() {
                         <div className="p-4 bg-amber-500 rounded-md border-amber-100 border-solid border-2" key={item.id}>
                             <h4 className="font-[700] text-[18px]"> {item.title}</h4>
                             <p>{item.body}</p>
+                            <p className="mt-[20px]">{item.formatted_datetime}</p>
                         </div>   
                     ))}
                </div>
