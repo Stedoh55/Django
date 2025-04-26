@@ -136,7 +136,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-    'rest_framework.permissions.AllowAny',
+    'rest_framework.permissions.IsAuthenticated',       # Only authenticated users can access endpoint, unless overridden at specific views
     ]
 }
 
