@@ -37,7 +37,13 @@ INSTALLED_APPS = [
 
     # Thirdy party apps
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
+   'allauth', # new
+    # 'allauth.account', # new
+    'allauth.socialaccount', # new
+    'rest_auth',
+    'rest_auth.registration', #
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,9 +51,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites', 
+
+    
 ]
 
 MIDDLEWARE = [
+    # 'allauth.account.middleware.AccountMiddleware'
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -137,7 +147,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
     'rest_framework.permissions.IsAuthenticated',       # Only authenticated users can access endpoint, unless overridden at specific views
-    ]
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication', 
+    ],
 }
 
 # Allowed hosts
@@ -145,3 +159,8 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:8000',
     'http://localhost:5173',
 )
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # new
+
+SITE_ID = 1 # new
+
